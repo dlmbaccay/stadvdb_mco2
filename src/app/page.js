@@ -36,13 +36,13 @@ export default function Home() {
 
 
 	return (
-		<main className="flex flex-col bg-background h-lvh w-full md:p-12 p-4">
+		<main className="flex flex-col bg-background w-full md:p-12 p-4">
 			<div className="flex flex-col w-full h-screen items-center">
-				<h1 className="text-4xl font-bold flex flex-row gap-4 mb-4">
+				<h1 className="text-4xl font-bold flex gap-4 mb-4 w-full items-center justify-center">
 					SeriousMD Transaction Management App
 					<ModeToggle />
 				</h1>
-				<Card className="md:w-2/3 w-full h-full p-6 text-black rounded-[1rem] shadow-lg gap-4 justify-between flex flex-col border border-primary">
+				<Card className="md:w-2/3 min-w-full h-full p-6 text-black rounded-[1rem] shadow-lg gap-4 justify-between flex flex-col border border-primary">
 					<div className="flex flex-row w-full h-fit p-2 gap-x-6 gap-y-2 items-center flex-wrap justify-between">
 						<div className="flex flex-row h-fit p-2 gap-x-6 gap-y-2 items-center flex-wrap">
 							<Button className="border border-primary hover:text-background">
