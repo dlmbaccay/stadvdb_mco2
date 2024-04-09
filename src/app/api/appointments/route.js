@@ -46,8 +46,6 @@ export async function POST(request) {
 		patientGender,
 	} = body
 
-	// let appointmentID
-
 	try {
 		const db = await pool1.getConnection()
 
@@ -101,6 +99,89 @@ export async function POST(request) {
 		// Rollback transaction if error occurs
 		await db.rollback()
 		console.error('Error inserting appointment:', error)
+		return NextResponse.json(
+			{
+				error: error,
+			},
+			{ status: 500 },
+		)
+	}
+}
+
+export async function PUT(request) {
+	const body = await request.json()
+	const {
+		appointmentId,
+		appointmentStatus,
+		appointmentType,
+		timeQueued,
+		queueDate,
+		startTime,
+		endTime,
+		virtual,
+		hospitalName,
+		city,
+		province,
+		region,
+		doctorMainSpecialty,
+		doctorAge,
+		patientAge,
+		patientGender,
+	} = body
+
+	try {
+		const db = await pool1.getConnection()
+
+		// Start transaction
+		await db.beginTransaction()
+
+		const updateQuery = `UPDATE appointments SET
+            appt_status = ?,
+            appt_type = ?,
+            time_queued = ?,
+            queue_date = ?,
+            start_time = ?,
+            end_time = ?,
+            appt_virtual = ?,
+            hospital_name = ?,
+            city = ?,
+            province = ?,
+            region = ?,
+            doctor_mainspecialty = ?,
+            doctor_age = ?,
+            patient_age = ?,
+            patient_gender = ?
+            WHERE apptid = ?`
+
+		const [updateRows] = await db.execute(updateQuery, [
+			appointmentStatus,
+			appointmentType,
+			timeQueued,
+			queueDate,
+			startTime,
+			endTime,
+			virtual,
+			hospitalName,
+			city,
+			province,
+			region,
+			doctorMainSpecialty,
+			doctorAge,
+			patientAge,
+			patientGender,
+			appointmentId,
+		])
+
+		// Commit transaction
+		await db.commit()
+
+		db.release()
+
+		return NextResponse.json(updateRows)
+	} catch (error) {
+		// Rollback transaction if error occurs
+		await db.rollback()
+		console.error('Error updating appointment:', error)
 		return NextResponse.json(
 			{
 				error: error,
