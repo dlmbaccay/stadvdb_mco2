@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { convertMySQLDateTimeToLocalInputFormat } from '@/lib/formats'
 import {
 	Dialog,
 	DialogContent,
@@ -27,11 +28,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DatePicker } from './ui/date-picker'
 
-export function CreateAppointment() {
+export function UpdateAppointment({ appointment }) {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
 
+	const [appointmentId, setAppointmentId] = useState('')
 	const [appointmentStatus, setAppointmentStatus] = useState('Complete')
 	const [appointmentType, setAppointmentType] = useState('Consultation')
 	const [timeQueued, setTimeQueued] = useState('')
@@ -48,17 +50,39 @@ export function CreateAppointment() {
 	const [patientAge, setPatientAge] = useState('')
 	const [patientGender, setPatientGender] = useState('')
 
-	const createAppointment = async (event) => {
-		event.preventDefault()
+	useEffect(() => {
+		if (appointment) {
+			setAppointmentId(appointment.apptid)
+			setAppointmentStatus(appointment.appt_status)
+			setAppointmentType(appointment.appt_type)
+			setTimeQueued(convertMySQLDateTimeToLocalInputFormat(appointment.time_queued))
+			setQueueDate(convertMySQLDateTimeToLocalInputFormat(appointment.queue_date))
+			setStartTime(convertMySQLDateTimeToLocalInputFormat(appointment.start_time))
+			setEndTime(convertMySQLDateTimeToLocalInputFormat(appointment.end_time))
+			setVirtual(appointment.appt_virtual)
+			setHospitalName(appointment.hospital_name)
+			setCity(appointment.city)
+			setProvince(appointment.province)
+			setRegion(appointment.region)
+			setDoctorMainSpecialty(appointment.doctor_mainspecialty)
+			setDoctorAge(appointment.doctor_age)
+			setPatientAge(appointment.patient_age)
+			setPatientGender(appointment.patient_gender)
+		}
+	}, [appointment])
 
+	const UpdateAppointment = async (event) => {
+		event.preventDefault()
+		console.log(appointmentId)
 		setLoading(true)
 		try {
 			const response = await fetch('/api/appointments', {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
+					appointmentId,
 					appointmentStatus,
 					appointmentType,
 					timeQueued,
@@ -92,15 +116,15 @@ export function CreateAppointment() {
 			{/* Trigger Buttons */}
 			<div className="flex flex-row items-center">
 				<DialogTrigger asChild>
-					<Button className="border border-primary hover:text-background">Insert</Button>
+					<Button className="border border-primary hover:text-background">Update</Button>
 				</DialogTrigger>
 			</div>
 			<DialogContent className="w-5/6 max-w-5/6">
 				<DialogHeader>
-					<DialogTitle className="text-center">Create an Appointment</DialogTitle>
+					<DialogTitle className="text-center">Update an Appointment</DialogTitle>
 				</DialogHeader>
 				<hr className="border-primary mx-4 my-2 border-b" />
-				<form onSubmit={createAppointment}>
+				<form onSubmit={UpdateAppointment}>
 					<div className="mb-4 flex w-full">
 						<div className="flex w-full flex-row gap-4 px-10 flex-wrap">
 							<div className="w-full flex flex-col p-8 gap-4 border border-primary rounded-lg">
@@ -304,7 +328,7 @@ export function CreateAppointment() {
 							<Button disabled>Please wait</Button>
 						) : (
 							<Button type="submit" className="mt-6">
-								Create Appointment
+								Update Appointment
 							</Button>
 						)}
 					</DialogFooter>
