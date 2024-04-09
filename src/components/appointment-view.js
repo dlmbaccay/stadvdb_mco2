@@ -1,25 +1,128 @@
 import { formatDate } from '@/lib/formats'
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	DialogClose,
+} from '@/components/ui/dialog'
+
+import { Button } from '@/components/ui/button'
 
 export default function AppointmentView({ appointment }) {
     return (
-        <div>
-            <h1>View Appointment</h1>
-            <h1>Appointment ID: {appointment.apptid}</h1>
-            <p>Status: {appointment.appt_status}</p>
-            <p>Type: {appointment.appt_type}</p>
-            <p>Patient Age: {appointment.patient_age}</p>
-            <p>Patient Gender: {appointment.patient_gender}</p>
-            <p>Doctor Main Specialty: {appointment.doctor_mainspecialty}</p>
-            <p>Doctor Age: {appointment.doctor_age}</p>
-            <p>Time Queued: {formatDate(appointment.time_queued)}</p>
-            <p>Queue Date: {formatDate(appointment.queue_date)}</p>
-            <p>Start Time: {formatDate(appointment.start_time)}</p>
-            <p>End Time: {formatDate(appointment.end_time)}</p>
-            <p>Virtual: {appointment.appt_virtual}</p>
-            <p>Hospital: {appointment.hospital_name}</p>
-            <p>City: {appointment.city}</p>
-            <p>Province: {appointment.province}</p>
-            <p>Region: {appointment.region}</p>
-        </div>
+        <Dialog>
+            <DialogTrigger>
+                <Button className="border border-primary hover:text-background">
+                    View
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="min-w-[800px] h-fit">
+                <DialogHeader>
+                    <DialogTitle>Appointment Details</DialogTitle>
+                    <DialogClose />
+                </DialogHeader>
+
+                <div className='flex flex-col w-full min-h-full'>
+
+                    <div className='border border-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Appointment ID</h1>
+                            <p>{appointment.apptid}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Virtual</h1>
+                            <p>{appointment.appt_virtual}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Status</h1>
+                            <p>{appointment.appt_status}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Type</h1>
+                            <p>{appointment.appt_type}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Patient Age</h1>
+                            <p>{appointment.patient_age}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Patient Gender</h1>
+                            <p>{appointment.patient_gender}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Doctor Main Specialty</h1>
+                            <p>{appointment.doctor_mainspecialty}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Doctor Age</h1>
+                            <p>{appointment.doctor_age}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Time Queued</h1>
+                            <p>{formatDate(appointment.time_queued)}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Queue Date</h1>
+                            <p>{formatDate(appointment.queue_date)}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Start Time</h1>
+                            <p>{formatDate(appointment.start_time)}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>End Time</h1>
+                            <p>{formatDate(appointment.end_time)}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Hospital</h1>
+                            <p>{appointment.hospital_name}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>City</h1>
+                            <p>{appointment.city}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Province</h1>
+                            <p>{appointment.province}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Region</h1>
+                            <p>{appointment.region}</p>
+                        </div>
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
     )
 }

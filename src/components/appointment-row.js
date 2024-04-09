@@ -1,37 +1,15 @@
 import { TableRow, TableCell } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { formatDate } from '@/lib/formats'
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-	DialogClose,
-} from '@/components/ui/dialog'
+
 import AppointmentView from '@/components/appointment-view'
-import AppointmentUpdate from '@/components/appointment-update'
 import { UpdateAppointment } from './update-form'
 
 export default function AppointmentRow({ appointment }) {
 	return (
 		<TableRow className="border-collapse border-b border-slate-500">
 			<TableCell>
-				<Dialog>
-					<DialogTrigger>
-						<Button className="border border-primary hover:text-background">
-							View
-						</Button>
-					</DialogTrigger>
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Appointment Details</DialogTitle>
-							<DialogClose />
-						</DialogHeader>
-
-						<AppointmentView appointment={appointment} />
-					</DialogContent>
-				</Dialog>
+				<AppointmentView appointment={appointment} />
 			</TableCell>
 
 			<TableCell>
@@ -51,7 +29,7 @@ export default function AppointmentRow({ appointment }) {
 				{appointment.patient_age}
 			</TableCell>
 			<TableCell className="w-fit text-nowrap text-left capitalize">
-				{appointment.patient_gender === 'FEMALE' ? 'Female' : 'Male'}
+				{appointment.patient_gender}
 			</TableCell>
 			<TableCell className="w-fit text-nowrap text-left capitalize">
 				{appointment.doctor_mainspecialty}
