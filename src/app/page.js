@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import AppointmentTable from '@/components/appointment-table'
 import { CreateAppointment } from '@/components/insert-form'
+import { ViewReports } from '@/components/view-reports'
 
 export default function Home() {
 	const [appointments, setAppointments] = useState([])
@@ -49,9 +50,7 @@ export default function Home() {
 							<Button className="border border-primary hover:text-background">
 								Search
 							</Button>
-							<Button className="border border-primary hover:text-background">
-								View Report
-							</Button>
+							<ViewReports />
 						</div>
 						<div className="flex flex-row h-fit p-2 gap-x-6 gap-y-2 items-center">
 							<span className="text-sm text-primary dark:text-primary-foreground">
