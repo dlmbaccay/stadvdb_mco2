@@ -82,7 +82,7 @@ export default function Home() {
 								<select
 									value={column}
 									onChange={(event) => setColumn(event.target.value)}
-									className="cursor-pointer outline-none h-10 text-sm px-2 rounded-l-lg"
+									className="cursor-pointer outline-none h-10 text-sm px-2 dark:bg-white dark:text-black rounded-l-lg"
 								>
 									<option value={'apptid'}>Application ID</option>
 									<option value={'appt_status'}>Status</option>
@@ -100,7 +100,7 @@ export default function Home() {
 									type="text"
 									value={searchValue}
 									onChange={(event) => setSearchValue(event.target.value)}
-									className="outline-none h-10 w-80 text-sm px-4"
+									className="outline-none h-10 dark:bg-white dark:text-black w-80 text-sm px-4"
 								/>
 								<button
 									type="submit"
