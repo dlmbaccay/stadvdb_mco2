@@ -8,7 +8,7 @@ export async function GET(request) {
 		// Start transaction
 		await db.beginTransaction()
 
-		const query = `SELECT * FROM appointments LIMIT 50` // Add WHERE conditions
+		const query = `SELECT * FROM appointments` // Add WHERE conditions
 		const [rows] = await db.execute(query)
 		// Add delay
 		await new Promise((resolve) => setTimeout(resolve, 1000))
