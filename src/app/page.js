@@ -74,7 +74,7 @@ export default function Home() {
 
 							{/* Search Appointments */}
 							<form onSubmit={(e) => {searchAppointment(e)}}>
-								<select value={column} onChange={(event) => setColumn(event.target.value)} className='cursor-pointer outline-none h-10 text-sm px-2 rounded-l-lg'>
+								<select value={column} onChange={(event) => setColumn(event.target.value)} className='cursor-pointer outline-none h-10 text-sm px-2 dark:bg-white dark:text-black rounded-l-lg'>
 									<option value={'apptid'}>Application ID</option>
 									<option value={'appt_status'}>Status</option>
 									<option value={'appt_type'}>Type</option>
@@ -85,7 +85,7 @@ export default function Home() {
 									<option value={'province'}>Province</option>
 									<option value={'region'}>Region</option>
 								</select>
-								<input type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} className='outline-none h-10 w-80 text-sm px-4'/>
+								<input type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} className='outline-none h-10 dark:bg-white dark:text-black w-80 text-sm px-4'/>
 								<button type="submit" className='h-10 text-sm px-4 bg-primary text-primary-foreground rounded-r-lg font-semibold'>Search</button>
 							</form>
 
