@@ -1,17 +1,25 @@
 import { NextResponse } from 'next/server'
-import { pool1 } from '@/lib/database'
+import { pool3 } from '@/lib/database'
 import { v4 as uuidv4 } from 'uuid'
 
 export async function GET(request) {
+
 	const { searchParams } = new URL(request.url)
 	const querypage = searchParams.get('page')
 	const page = querypage ? parseInt(querypage) : 1
 	const pageSize = 10 // Number of records per page
 	const offset = (page - 1) * pageSize
 
+	const action = searchParams.get('action')
+	const column = searchParams.get('column')
+	const searchValue = searchParams.get('searchValue')
+
 	try {
-		const db = await pool1.getConnection()
-		const query = `SELECT * FROM appointments LIMIT ${pageSize} OFFSET ${offset}` // Add WHERE conditions
+		const db = await pool3.getConnection()
+		let query = `SELECT * FROM appointments LIMIT ${pageSize} OFFSET ${offset}`
+		if (action === 'search') {
+			query = `SELECT * FROM appointments WHERE ${column} LIKE '%${searchValue}%' LIMIT ${pageSize} OFFSET ${offset}`
+		}
 		const [rows] = await db.execute(query)
 		db.release()
 
