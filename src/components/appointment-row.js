@@ -22,7 +22,7 @@ export default function AppointmentRow({ appointment }) {
 			<TableCell className="text-right w-fit text-nowrap">{appointment.start_time}</TableCell>
 			<TableCell className="text-right w-fit text-nowrap">{appointment.end_time}</TableCell>
 			<TableCell className="text-center">{appointment.appt_virtual}</TableCell>
-			<TableCell className="text-right w-fit text-nowrap">
+			<TableCell className="text-center w-fit text-nowrap">
 				{appointment.hospital_name}
 			</TableCell>
 			<TableCell className="text-center">{appointment.city}</TableCell>

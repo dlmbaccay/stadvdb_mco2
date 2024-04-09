@@ -25,8 +25,14 @@ const instances = [
 	},
 ]
 
-const pool = mysql.createPool({...instances[0],
+export const pool1 = mysql.createPool({...instances[0],
     waitForConnections: true
 })
 
-export default pool
+export const pool2 = mysql.createPool({...instances[1],
+    waitForConnections: true
+})
+
+export const pool3 = mysql.createPool({...instances[2],
+    waitForConnections: true
+})

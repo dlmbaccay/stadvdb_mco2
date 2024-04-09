@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/database";
+import {pool1} from "@/lib/database";
 import { uuid } from 'uuidv4';
 
 export async function GET(request) {
@@ -10,7 +10,7 @@ export async function GET(request) {
     const offset = (page - 1) * pageSize;
 
     try {
-        const db = await pool.getConnection();
+        const db = await pool1.getConnection();
         const query = `SELECT * FROM appointments LIMIT ${pageSize} OFFSET ${offset}`; // Add WHERE conditions
         const [rows] = await db.execute(query);
         db.release();
@@ -30,7 +30,7 @@ export async function POST(request) {
     let appointmentID;
 
     try {
-        const db = await pool.getConnection()
+        const db = await pool1.getConnection()
 
          // Keep generating a new unique ID until a unique one is found
          while (!isUniqueID) {
