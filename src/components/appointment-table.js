@@ -1,24 +1,22 @@
 'use client'
-import {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from '@/components/ui/table'
 
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog"
 import AppointmentRow from '@/components/appointment-row'
 import { Button } from '@/components/ui/button'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function AppointmentTable({appointments}) {
-
 	return (
 		<Table>
 			<TableHeader>
 				<TableRow>
+					<TableHead className="border-collapse border-b border-slate-500 text-nowrap">
+						{/* View */}
+					</TableHead>
+					<TableHead className="border-collapse border-b border-slate-500 text-nowrap">
+						{/* Update */}
+					</TableHead>
 					<TableHead className="border-collapse border-b border-slate-500 text-nowrap">
 						Appointment ID
 					</TableHead>
@@ -72,17 +70,8 @@ export default function AppointmentTable({appointments}) {
 			</TableHeader>
 			<TableBody>
 				{appointments && appointments.length > 0 && appointments.map((appointments) => 
-					<AppointmentRow key={appointments.apptid} appointment={appointments} />)}
-				{/* <AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow />
-				<AppointmentRow /> */}
+					<AppointmentRow key={appointments.apptid} appointment={appointments} />
+				)}
 			</TableBody>
 		</Table>
 	)
