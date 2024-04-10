@@ -119,7 +119,8 @@ export default function Home() {
 						</div>
 						<div className="flex flex-row h-fit p-2 gap-x-6 gap-y-2 items-center">
 							<span className="text-sm text-primary dark:text-primary-foreground">
-								Showing 1-10 of 100
+								Showing {currentPage === 1 ? currentPage : currentPage * 10 - 9}-
+								{currentPage * 10}
 							</span>
 							<Button
 								onClick={decrementPage}
