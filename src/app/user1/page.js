@@ -66,7 +66,7 @@ export default function Home() {
 					SeriousMD Transaction Management App
 					<ModeToggle />
 				</h1>
-				<Card className="md:w-2/3 min-w-full h-full p-6 text-black rounded-[1rem] shadow-lg gap-4 justify-between flex flex-col border border-primary">
+				<Card className="md:w-2/3 min-w-full h-fit p-6 text-black rounded-[1rem] shadow-lg gap-4 flex flex-col border border-primary">
 					<div className="flex flex-row w-full h-fit p-2 gap-x-6 gap-y-2 items-center flex-wrap justify-between">
 						<div className="flex flex-row h-fit p-2 gap-x-6 gap-y-2 items-center flex-wrap">
 							<ViewReports node={'node1'} />
@@ -137,7 +137,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					<Card className="flex w-full h-full rounded-[1rem] border border-primary overflow-hidden">
+					<Card className="flex w-full h-fit rounded-[1rem] border border-primary overflow-hidden">
 						{loading ? (
 							<div className="flex w-full h-full items-center justify-center">
 								<p>Loading appointments...</p>
