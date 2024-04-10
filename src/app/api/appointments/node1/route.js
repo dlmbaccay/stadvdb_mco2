@@ -14,9 +14,16 @@ export async function GET(request) {
 	const searchValue = searchParams.get('searchValue')
 
 	try {
-		const db = await pool1
-			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+		const db = await pool1.getConnection().catch((error) => {
+			console.log('Failed to connect to pool1:', error)
+			return pool2.getConnection().catch((error) => {
+				console.log('Failed to connect to pool2:', error)
+				return pool3.getConnection().catch((error) => {
+					console.log('Failed to connect to pool3:', error)
+					throw error
+				})
+			})
+		})
 
 		console.log('Connected to database: PORT ', db.connection.config.port)
 
@@ -63,9 +70,16 @@ export async function POST(request) {
 	let db
 
 	try {
-		db = await pool1
-			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+		db = await pool1.getConnection().catch((error) => {
+			console.log('Failed to connect to pool1:', error)
+			return pool2.getConnection().catch((error) => {
+				console.log('Failed to connect to pool2:', error)
+				return pool3.getConnection().catch((error) => {
+					console.log('Failed to connect to pool3:', error)
+					throw error
+				})
+			})
+		})
 
 		console.log('Connected to database: PORT ', db.connection.config.port)
 
@@ -161,9 +175,16 @@ export async function PUT(request) {
 	let db
 
 	try {
-		db = await pool1
-			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+		db = await pool1.getConnection().catch((error) => {
+			console.log('Failed to connect to pool1:', error)
+			return pool2.getConnection().catch((error) => {
+				console.log('Failed to connect to pool2:', error)
+				return pool3.getConnection().catch((error) => {
+					console.log('Failed to connect to pool3:', error)
+					throw error
+				})
+			})
+		})
 
 		console.log('Connected to database: PORT ', db.connection.config.port)
 
