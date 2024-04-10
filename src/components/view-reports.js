@@ -20,7 +20,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
-import { format } from 'date-fns'
+import { format, set } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -45,6 +45,7 @@ export function ViewReports() {
 	useEffect(() => {
 		async function fetchData() {
 			try {
+				setLoading(true)
 				const response = await fetch(`/api/report-data/node1`)
 				const data = await response.json()
 				const { count, hospital } = await getHighestAppointmentsClinic(data)
@@ -61,6 +62,7 @@ export function ViewReports() {
 				setMostCommonSpecialty(mostCommonSpecialty)
 
 				setAppointments(data)
+				setLoading(false)
 			} catch (error) {
 				console.error('Error fetching data:', error)
 			}
@@ -79,64 +81,70 @@ export function ViewReports() {
 					</Button>
 				</DialogTrigger>
 			</div>
-			<DialogContent className="w-2/3 max-w-2/3">
+			<DialogContent className="min-w-[300px] h-fit">
 				<DialogHeader>
-					<DialogTitle className="text-center">Appointment Statistics</DialogTitle>
+					<DialogTitle className="text-center">Database Statistics</DialogTitle>
 				</DialogHeader>
-				<div className="flex flex-col w-full p-8">
-					<div className="mb-4">
-						<Label>Total Appointments:</Label>
-						<span>{appointments.length}</span>
-					</div>
-					<div className="mb-4">
-						<Label>Consultation Appointments:</Label>
-						<span>
-							{
-								appointments.filter(
-									(appointment) => appointment.appt_type === 'Consultation',
-								).length
-							}
-						</span>
-					</div>
-					<div className="mb-4">
-						<Label>Inpatient Appointments:</Label>
-						<span>
-							{
-								appointments.filter(
-									(appointment) => appointment.appt_type === 'Inpatient',
-								).length
-							}
-						</span>
-					</div>
-					<div className="mb-4">
-						<Label>Hospital with Highest Appointments:</Label>
-						<span>
-							{highestCount} {highestHospital}
-						</span>
-					</div>
-					<div className="mb-4">
-						<Label>Appointments in Luzon:</Label>
-						<span>{luzonCount}</span>
-					</div>
-					<div className="mb-4">
-						<Label>Appointments in Visayas:</Label>
-						<span>{visayasCount}</span>
-					</div>
-					<div className="mb-4">
-						<Label>Appointments in Mindanao:</Label>
-						<span>{mindanaoCount}</span>
-					</div>
-					<div className="mb-4">
-						<Label>Most Common Patient Age-Group:</Label>
-						<span>{mostCommonAgeGroup}</span>
-					</div>
-					<div className="mb-4">
-						<Label>Most Common Doctor Main Specialty:</Label>
-						<span>{mostCommonSpecialty}</span>
-					</div>
+				<div className="flex flex-col w-full">
+					{ loading ? (
+						<p>Loading...</p> 
+					) : (
+						<div className='flex flex-col gap- border border-black'>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Total Appointments:</Label>
+								<span>{appointments.length}</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Consultation Appointments:</Label>
+								<span>
+									{
+										appointments.filter(
+											(appointment) => appointment.appt_type === 'Consultation',
+										).length
+									}
+								</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Inpatient Appointments:</Label>
+								<span>
+									{
+										appointments.filter(
+											(appointment) => appointment.appt_type === 'Inpatient',
+										).length
+									}
+								</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Hospital with Highest Appointments:</Label>
+								<span>
+									{highestCount} {highestHospital}
+								</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Appointments in Luzon:</Label>
+								<span>{luzonCount}</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Appointments in Visayas:</Label>
+								<span>{visayasCount}</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Appointments in Mindanao:</Label>
+								<span>{mindanaoCount}</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2 border border-b-black">
+								<Label className="font-bold">Most Common Patient Age-Group:</Label>
+								<span>{mostCommonAgeGroup}</span>
+							</div>
+							<div className="p-2 flex flex-col gap-2">
+								<Label className="font-bold">Most Common Doctor Main Specialty:</Label>
+								<span>{mostCommonSpecialty}</span>
+							</div>
+						</div>
+					)}
 				</div>
 
-				<DialogFooter>
+				{/* <DialogFooter>
 					{loading ? (
 						<Button disabled>Please wait</Button>
 					) : (
@@ -144,7 +152,7 @@ export function ViewReports() {
 							<Button className="mt-6">Close</Button>
 						</DialogClose>
 					)}
-				</DialogFooter>
+				</DialogFooter> */}
 			</DialogContent>
 		</Dialog>
 	)
