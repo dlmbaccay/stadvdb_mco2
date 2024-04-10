@@ -20,11 +20,15 @@ export default function AppointmentView({ appointment }) {
             </DialogTrigger>
             <DialogContent className="min-w-[800px] h-fit">
                 <DialogHeader>
-                    <DialogTitle>Appointment Details</DialogTitle>
+                    <DialogTitle>View Appointment</DialogTitle>
                     <DialogClose />
                 </DialogHeader>
 
                 <div className='flex flex-col w-full min-h-full'>
+
+                    <div>
+                        <h1 className='font-bold text-xl my-2'>Appointment Details</h1>
+                    </div>
 
                     <div className='border border-black flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
@@ -52,30 +56,6 @@ export default function AppointmentView({ appointment }) {
 
                     <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
-                            <h1 className='font-bold'>Patient Age</h1>
-                            <p>{appointment.patient_age}</p>
-                        </div>
-
-                        <div className='flex flex-col w-1/2'>
-                            <h1 className='font-bold'>Patient Gender</h1>
-                            <p>{appointment.patient_gender}</p>
-                        </div>
-                    </div>
-
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
-                        <div className='flex flex-col w-1/2'>
-                            <h1 className='font-bold'>Doctor Main Specialty</h1>
-                            <p>{appointment.doctor_mainspecialty}</p>
-                        </div>
-
-                        <div className='flex flex-col w-1/2'>
-                            <h1 className='font-bold'>Doctor Age</h1>
-                            <p>{appointment.doctor_age}</p>
-                        </div>
-                    </div>
-
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
-                        <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Time Queued</h1>
                             <p>{formatDate(appointment.time_queued)}</p>
                         </div>
@@ -98,7 +78,11 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div>
+                        <h1 className='font-bold text-xl my-2'>Hospital/Clinic Details</h1>
+                    </div>
+
+                    <div className='border border-black flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Hospital</h1>
                             <p>{appointment.hospital_name}</p>
@@ -119,6 +103,34 @@ export default function AppointmentView({ appointment }) {
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Region</h1>
                             <p>{appointment.region}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 className='font-bold text-xl my-2'>Doctor and Patient Details</h1>
+                    </div>
+
+                    <div className='border border-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Doctor Main Specialty</h1>
+                            <p>{appointment.doctor_mainspecialty}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Doctor Age</h1>
+                            <p>{appointment.doctor_age}</p>
+                        </div>
+                    </div>
+
+                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Patient Age</h1>
+                            <p>{appointment.patient_age}</p>
+                        </div>
+
+                        <div className='flex flex-col w-1/2'>
+                            <h1 className='font-bold'>Patient Gender</h1>
+                            <p>{appointment.patient_gender}</p>
                         </div>
                     </div>
                 </div>
