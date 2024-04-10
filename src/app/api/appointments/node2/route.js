@@ -63,9 +63,9 @@ export async function POST(request) {
 	let db
 
 	try {
-		db = await pool1
+		db = await pool2
 			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+			.catch(() => pool3.getConnection().catch(() => pool1.getConnection()))
 
 		console.log('Connected to database: PORT ', db.connection.config.port)
 
@@ -161,9 +161,9 @@ export async function PUT(request) {
 	let db
 
 	try {
-		db = await pool1
+		db = await pool2
 			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+			.catch(() => pool3.getConnection().catch(() => pool1.getConnection()))
 
 		console.log('Connected to database: PORT ', db.connection.config.port)
 
