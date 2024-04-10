@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
-import { pool2 } from '@/lib/database'
+import { pool1 } from '@/lib/database'
 
 export async function GET(request) {
 	try {
-		const db = await pool2.getConnection()
+		const db = await pool1.getConnection()
 
 		// Start transaction
 		await db.beginTransaction()
