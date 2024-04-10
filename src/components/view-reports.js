@@ -89,12 +89,12 @@ export function ViewReports() {
 					{ loading ? (
 						<p>Loading...</p> 
 					) : (
-						<div className='flex flex-col gap- border border-black'>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+						<div className='flex flex-col gap- border border-black dark:border-white'>
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Total Appointments:</Label>
 								<span>{appointments.length}</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Consultation Appointments:</Label>
 								<span>
 									{
@@ -104,7 +104,7 @@ export function ViewReports() {
 									}
 								</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Inpatient Appointments:</Label>
 								<span>
 									{
@@ -114,25 +114,25 @@ export function ViewReports() {
 									}
 								</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Hospital with Highest Appointments:</Label>
 								<span>
 									{highestCount} {highestHospital}
 								</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Appointments in Luzon:</Label>
 								<span>{luzonCount}</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Appointments in Visayas:</Label>
 								<span>{visayasCount}</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Appointments in Mindanao:</Label>
 								<span>{mindanaoCount}</span>
 							</div>
-							<div className="p-2 flex flex-col gap-2 border border-b-black">
+							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Most Common Patient Age-Group:</Label>
 								<span>{mostCommonAgeGroup}</span>
 							</div>

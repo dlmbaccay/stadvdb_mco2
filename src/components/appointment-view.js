@@ -30,7 +30,7 @@ export default function AppointmentView({ appointment }) {
                         <h1 className='font-bold text-xl my-2'>Appointment Details</h1>
                     </div>
 
-                    <div className='border border-black flex w-full text-left p-2'>
+                    <div className='border border-black dark:border-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Appointment ID</h1>
                             <p>{appointment.apptid}</p>
@@ -42,7 +42,7 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div className='border border-b-black border-l-black border-r-black dark:border-b-white dark:border-l-white dark:border-r-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Status</h1>
                             <p>{appointment.appt_status}</p>
@@ -54,7 +54,7 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div className='border border-b-black border-l-black border-r-black dark:border-b-white dark:border-l-white dark:border-r-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Time Queued</h1>
                             <p>{formatDate(appointment.time_queued)}</p>
@@ -66,7 +66,7 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div className='border border-b-black border-l-black border-r-black dark:border-b-white dark:border-l-white dark:border-r-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Start Time</h1>
                             <p>{formatDate(appointment.start_time)}</p>
@@ -82,7 +82,7 @@ export default function AppointmentView({ appointment }) {
                         <h1 className='font-bold text-xl my-2'>Hospital/Clinic Details</h1>
                     </div>
 
-                    <div className='border border-black flex w-full text-left p-2'>
+                    <div className='border border-black dark:border-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Hospital</h1>
                             <p>{appointment.hospital_name}</p>
@@ -94,7 +94,7 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div className='border border-b-black border-l-black border-r-black dark:border-b-white dark:border-l-white dark:border-r-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Province</h1>
                             <p>{appointment.province}</p>
@@ -110,7 +110,7 @@ export default function AppointmentView({ appointment }) {
                         <h1 className='font-bold text-xl my-2'>Doctor and Patient Details</h1>
                     </div>
 
-                    <div className='border border-black flex w-full text-left p-2'>
+                    <div className='border border-black dark:border-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Doctor Main Specialty</h1>
                             <p>{appointment.doctor_mainspecialty}</p>
@@ -122,7 +122,7 @@ export default function AppointmentView({ appointment }) {
                         </div>
                     </div>
 
-                    <div className='border border-b-black border-l-black border-r-black flex w-full text-left p-2'>
+                    <div className='border border-b-black border-l-black border-r-black dark:border-b-white dark:border-l-white dark:border-r-white flex w-full text-left p-2'>
                         <div className='flex flex-col w-1/2'>
                             <h1 className='font-bold'>Patient Age</h1>
                             <p>{appointment.patient_age}</p>
