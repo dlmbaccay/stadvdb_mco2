@@ -14,9 +14,9 @@ export async function GET(request) {
 	const searchValue = searchParams.get('searchValue')
 
 	try {
-		const db = await pool1
+		const db = await pool2
 			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+			.catch(() => pool3.getConnection().catch(() => pool1.getConnection()))
 
 		let query = `SELECT * FROM appointments LIMIT ${pageSize} OFFSET ${offset}`
 		if (action === 'search') {
@@ -100,6 +100,9 @@ export async function POST(request) {
 			province,
 			region,
 		])
+
+		// Add a 10s delay
+		await new Promise((resolve) => setTimeout(resolve, 10000))
 
 		// Commit transaction
 		await db.commit()
@@ -185,6 +188,9 @@ export async function PUT(request) {
 			patientGender,
 			appointmentId,
 		])
+
+		// Add a 10s delay
+		await new Promise((resolve) => setTimeout(resolve, 10000))
 
 		// Commit transaction
 		await db.commit()
