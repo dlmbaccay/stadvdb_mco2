@@ -1,12 +1,28 @@
 'use client'
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog"
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	DialogClose,
+} from '@/components/ui/dialog'
 import AppointmentRow from '@/components/appointment-row'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-export default function AppointmentTable({appointments}) {
+export default function AppointmentTable({ appointments, node }) {
 	return (
 		<Table>
 			<TableHeader>
@@ -69,9 +85,15 @@ export default function AppointmentTable({appointments}) {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{appointments && appointments.length > 0 && appointments.map((appointments) => 
-					<AppointmentRow key={appointments.apptid} appointment={appointments} />
-				)}
+				{appointments &&
+					appointments.length > 0 &&
+					appointments.map((appointments) => (
+						<AppointmentRow
+							key={appointments.apptid}
+							appointment={appointments}
+							node={node}
+						/>
+					))}
 			</TableBody>
 		</Table>
 	)

@@ -28,7 +28,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DatePicker } from './ui/date-picker'
 
-export function UpdateAppointment({ appointment }) {
+export function UpdateAppointment({ appointment, node }) {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
@@ -76,7 +76,7 @@ export function UpdateAppointment({ appointment }) {
 		console.log(appointmentId)
 		setLoading(true)
 		try {
-			const response = await fetch('/api/appointments', {
+			const response = await fetch('/api/appointments/' + node, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',

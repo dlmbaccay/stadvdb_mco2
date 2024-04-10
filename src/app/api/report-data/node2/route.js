@@ -3,9 +3,9 @@ import { pool1, pool2, pool3 } from '@/lib/database'
 
 export async function GET(request) {
 	try {
-		const db = await pool1
+		const db = await pool2
 			.getConnection()
-			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
+			.catch(() => pool3.getConnection().catch(() => pool1.getConnection()))
 
 		// Introduce a delay of 1 second (1000 milliseconds)
 		await new Promise((resolve) => setTimeout(resolve, 1000))

@@ -29,7 +29,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DatePicker } from './ui/date-picker'
 
-export function ViewReports() {
+export function ViewReports({ node }) {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
@@ -46,7 +46,7 @@ export function ViewReports() {
 		async function fetchData() {
 			try {
 				setLoading(true)
-				const response = await fetch(`/api/report-data/node1`)
+				const response = await fetch(`/api/report-data/${node}`)
 				const data = await response.json()
 				const { count, hospital } = await getHighestAppointmentsClinic(data)
 				setHighestCount(count)
@@ -86,10 +86,10 @@ export function ViewReports() {
 					<DialogTitle className="text-center">Database Statistics</DialogTitle>
 				</DialogHeader>
 				<div className="flex flex-col w-full">
-					{ loading ? (
-						<p>Loading...</p> 
+					{loading ? (
+						<p>Loading...</p>
 					) : (
-						<div className='flex flex-col gap- border border-black dark:border-white'>
+						<div className="flex flex-col gap- border border-black dark:border-white">
 							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
 								<Label className="font-bold">Total Appointments:</Label>
 								<span>{appointments.length}</span>
@@ -99,7 +99,8 @@ export function ViewReports() {
 								<span>
 									{
 										appointments.filter(
-											(appointment) => appointment.appt_type === 'Consultation',
+											(appointment) =>
+												appointment.appt_type === 'Consultation',
 										).length
 									}
 								</span>
@@ -115,7 +116,9 @@ export function ViewReports() {
 								</span>
 							</div>
 							<div className="p-2 flex flex-col gap-2 border border-b-black dark:border-b-white">
-								<Label className="font-bold">Hospital with Highest Appointments:</Label>
+								<Label className="font-bold">
+									Hospital with Highest Appointments:
+								</Label>
 								<span>
 									{highestCount} {highestHospital}
 								</span>
@@ -137,7 +140,9 @@ export function ViewReports() {
 								<span>{mostCommonAgeGroup}</span>
 							</div>
 							<div className="p-2 flex flex-col gap-2">
-								<Label className="font-bold">Most Common Doctor Main Specialty:</Label>
+								<Label className="font-bold">
+									Most Common Doctor Main Specialty:
+								</Label>
 								<span>{mostCommonSpecialty}</span>
 							</div>
 						</div>

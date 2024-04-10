@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DatePicker } from './ui/date-picker'
 
-export function CreateAppointment() {
+export function CreateAppointment({ node }) {
 	const router = useRouter()
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
@@ -53,7 +53,7 @@ export function CreateAppointment() {
 
 		setLoading(true)
 		try {
-			const response = await fetch('/api/appointments', {
+			const response = await fetch('/api/appointments/' + node, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

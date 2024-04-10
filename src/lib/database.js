@@ -1,4 +1,3 @@
-
 import mysql from 'mysql2/promise'
 
 const instances = [
@@ -23,16 +22,17 @@ const instances = [
 		password: 'CXw35gRKq6yNJAm8ht2MVeWf',
 		database: 'mco2_warehouse',
 	},
+	{
+		host: 'localhost',
+		port: 3306,
+		user: 'root',
+		password: '',
+		database: 'mco2_warehouse',
+	},
 ]
 
-export const pool1 = mysql.createPool({...instances[0],
-    waitForConnections: true
-})
+export const pool1 = mysql.createPool({ ...instances[3], waitForConnections: true })
 
-export const pool2 = mysql.createPool({...instances[1],
-    waitForConnections: true
-})
+export const pool2 = mysql.createPool({ ...instances[3], waitForConnections: true })
 
-export const pool3 = mysql.createPool({...instances[2],
-    waitForConnections: true
-})
+export const pool3 = mysql.createPool({ ...instances[3], waitForConnections: true })

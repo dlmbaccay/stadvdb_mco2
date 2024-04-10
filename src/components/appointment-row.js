@@ -5,7 +5,7 @@ import { formatDate } from '@/lib/formats'
 import AppointmentView from '@/components/appointment-view'
 import { UpdateAppointment } from './update-form'
 
-export default function AppointmentRow({ appointment }) {
+export default function AppointmentRow({ appointment, node }) {
 	return (
 		<TableRow className="border-collapse border-b border-slate-500">
 			<TableCell>
@@ -13,7 +13,7 @@ export default function AppointmentRow({ appointment }) {
 			</TableCell>
 
 			<TableCell>
-				<UpdateAppointment appointment={appointment} />
+				<UpdateAppointment appointment={appointment} node={node} />
 			</TableCell>
 
 			<TableCell className="font-medium overflow-hidden hover:overflow-visible min-w-fit text-left">
