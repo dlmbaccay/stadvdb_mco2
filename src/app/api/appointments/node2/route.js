@@ -18,12 +18,16 @@ export async function GET(request) {
 			.getConnection()
 			.catch(() => pool3.getConnection().catch(() => pool1.getConnection()))
 
+		console.log('Connected to database: PORT ', db.connection.config.port)
+
 		let query = `SELECT * FROM appointments LIMIT ${pageSize} OFFSET ${offset}`
 		if (action === 'search') {
 			query = `SELECT * FROM appointments WHERE ${column} LIKE '%${searchValue}%' LIMIT ${pageSize} OFFSET ${offset}`
 		}
 		const [rows] = await db.execute(query)
 		db.release()
+
+		console.log('Released connection to database: PORT', db.connection.config.port)
 
 		return NextResponse.json(rows)
 	} catch (error) {
@@ -56,13 +60,19 @@ export async function POST(request) {
 		patientGender,
 	} = body
 
+	let db
+
 	try {
-		const db = await pool1
+		db = await pool1
 			.getConnection()
 			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
 
+		console.log('Connected to database: PORT ', db.connection.config.port)
+
 		// Start transaction
 		await db.beginTransaction()
+
+		console.log('BEGIN INSERT TRANSACTION ', db.connection.config.port)
 
 		// Generate UUID in the desired format
 		let apptid = uuidv4().toUpperCase().replace(/-/g, '').substring(0, 32)
@@ -107,7 +117,11 @@ export async function POST(request) {
 		// Commit transaction
 		await db.commit()
 
+		console.log('COMMIT INSERT TRANSACTION ', db.connection.config.port)
+
 		db.release()
+
+		console.log('Released connection to database: PORT', db.connection.config.port)
 
 		return NextResponse.json(insertRows)
 	} catch (error) {
@@ -144,13 +158,19 @@ export async function PUT(request) {
 		patientGender,
 	} = body
 
+	let db
+
 	try {
-		const db = await pool1
+		db = await pool1
 			.getConnection()
 			.catch(() => pool2.getConnection().catch(() => pool3.getConnection()))
 
+		console.log('Connected to database: PORT ', db.connection.config.port)
+
 		// Start transaction
 		await db.beginTransaction()
+
+		console.log('BEGIN UPDATE TRANSACTION ', db.connection.config.port)
 
 		const updateQuery = `UPDATE appointments SET
             appt_status = ?,
@@ -195,7 +215,11 @@ export async function PUT(request) {
 		// Commit transaction
 		await db.commit()
 
+		console.log('COMMIT UPDATE TRANSACTION ', db.connection.config.port)
+
 		db.release()
+
+		console.log('Released connection to database: PORT', db.connection.config.port)
 
 		return NextResponse.json(updateRows)
 	} catch (error) {
