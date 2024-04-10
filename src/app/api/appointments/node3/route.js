@@ -111,8 +111,8 @@ export async function POST(request) {
 			region,
 		])
 
-		// Add a 10s delay
-		await new Promise((resolve) => setTimeout(resolve, 10000))
+		// // Add a 10s delay
+		// await new Promise((resolve) => setTimeout(resolve, 10000))
 
 		// Commit transaction
 		await db.commit()
@@ -208,8 +208,8 @@ export async function PUT(request) {
 			patientGender,
 			appointmentId,
 		])
-		// Add a 10s delay
-		await new Promise((resolve) => setTimeout(resolve, 10000))
+		// // Add a 10s delay
+		// await new Promise((resolve) => setTimeout(resolve, 10000))
 
 		// Commit transaction
 		await db.commit()
